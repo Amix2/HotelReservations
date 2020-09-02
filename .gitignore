@@ -1,0 +1,7 @@
+
+App/HotelReservationsApp/HotelReservationsApp/bin/
+App/HotelReservationsApp/HotelReservationsApp/obj/
+App/HotelReservationsApp/packages/
+
+Database/HotelReservations.mdf
+Database/HotelReservations_log.ldf

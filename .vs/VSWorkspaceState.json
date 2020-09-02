@@ -1,0 +1,12 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\App",
+    "\\App\\HotelReservationsApp",
+    "\\App\\HotelReservationsApp\\HotelReservationsApp",
+    "\\App\\HotelReservationsApp\\HotelReservationsApp\\DBModels",
+    "\\App\\HotelReservationsApp\\HotelReservationsApp\\Windows"
+  ],
+  "SelectedNode": "\\App\\HotelReservationsApp\\HotelReservationsApp\\DBModels\\Customers.cs",
+  "PreviewInSolutionExplorer": false
+}
