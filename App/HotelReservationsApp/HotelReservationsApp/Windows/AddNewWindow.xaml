@@ -126,6 +126,6 @@
             <Button x:Name="EditReservationButton" Content="Edit Reservation" Grid.Column="1" Grid.Row="5" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="92" RenderTransformOrigin="0.507,-1.35" Margin="0,10,0,0" Height="25" Click="EditReservationButton_Click" Grid.RowSpan="2" />
         </Grid>
 
-        <Label x:Name="LogLabel" Content="Label" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Top" Grid.ColumnSpan="3" Width="742" />
+        <Label x:Name="LogLabel" Content="Log" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Top" Grid.ColumnSpan="3" Width="742" />
     </Grid>
 </Window>

@@ -56,16 +56,19 @@ namespace HotelReservationsApp.Windows
 
         private void AddRoomButton_Click(object sender, RoutedEventArgs e)
         {
+            selectedRoomKey.Value = -1;
             AddNewEntity(roomCreator);
         }
 
         private void AddCustomerButton_Click(object sender, RoutedEventArgs e)
         {
+            selectedCustomerKey.Value = -1;
             AddNewEntity(customerCreator);
         }
 
         private void AddReservationButton_Click(object sender, RoutedEventArgs e)
         {
+            selectedReservationKey.Value = -1;
             AddNewEntity(reservationCreator);
         }
 

@@ -3,8 +3,8 @@ using HotelReservationsApp.Model;
 using HotelReservationsApp.Model.Validator;
 using HotelReservationsApp.Windows;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
+using ListViewItem = System.Windows.Controls.ListViewItem;
 
 namespace HotelReservationsApp
 {
