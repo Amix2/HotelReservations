@@ -17,13 +17,14 @@ namespace HotelReservationsApp.Windows
         public abstract void InsertFields(T entity);
         public abstract Result AddNewEntity(DataConnection dataConnection);
 
-        protected void FetchEntity(DataConnection dataConnection, Expression<Func<T, bool>> filter, string failLog, string successLog, Action<string> Log)
+        protected T FetchEntity(DataConnection dataConnection, Expression<Func<T, bool>> filter, string failLog, string successLog, Action<string> Log)
         {
             var fetchedEntity = dataConnection.GetEntitiesWithFilter<T>(filter);
             if (fetchedEntity.Count() == 0)
             {
                 Log?.Invoke(failLog);
                 UnblockInputTextBoxes();
+                return null;
             }
             else
             {
@@ -31,6 +32,7 @@ namespace HotelReservationsApp.Windows
                 T entity = fetchedEntity.First();
                 InsertFields(entity);
                 BlockInputTextBoxes();
+                return entity;
             }
         }
 

@@ -36,6 +36,7 @@ namespace HotelReservationsApp
             dataConnection = new DataConnection();
             dataConnection.AddInsertValidator(new RoomInsertValidator());
             dataConnection.AddInsertValidator(new CustomerInsertVlidator());
+            dataConnection.AddInsertValidator(new ReservationInsertValidator());
 
 
             dataConnection.OnDBChange += (dbContext, type) =>

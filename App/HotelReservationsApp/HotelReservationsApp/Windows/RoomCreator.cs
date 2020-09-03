@@ -1,4 +1,5 @@
 ﻿using HotelReservationsApp.DBModels;
+using HotelReservationsApp.Misc;
 using HotelReservationsApp.Model;
 using HotelReservationsApp.Model.Validator;
 using System;
@@ -17,8 +18,10 @@ namespace HotelReservationsApp.Windows
         private TextBox RoomSizeInput;
         private TextBox RoomTypeInput;
         private Action<string> Log;
+        Integer selectedRoomKey;
 
-        public RoomCreator(TextBox roomNumberInput, TextBox roomCapacityInput, TextBox roomFloorNumberInput, TextBox roomPriceInput, TextBox roomSizeInput, TextBox roomTypeInput, Action<string> log)
+        public RoomCreator(TextBox roomNumberInput, TextBox roomCapacityInput, TextBox roomFloorNumberInput, TextBox roomPriceInput, TextBox roomSizeInput, TextBox roomTypeInput
+            , Action<string> log, Integer selectedRoomKey)
         {
             RoomNumberInput = roomNumberInput;
             RoomCapacityInput = roomCapacityInput;
@@ -27,6 +30,7 @@ namespace HotelReservationsApp.Windows
             RoomSizeInput = roomSizeInput;
             RoomTypeInput = roomTypeInput;
             Log = log;
+            this.selectedRoomKey = selectedRoomKey;
 
             this.textBoxesToBlock = new List<TextBox>() {
                 RoomCapacityInput,
@@ -53,7 +57,8 @@ namespace HotelReservationsApp.Windows
 
             const string FailLog = "Fetch Failed - Room with provided number couldnt be found";
             const string SuccessLog = "Fetch Successful";
-            base.FetchEntity(dataConnection, room => room.RoomNumber == inputRoomNumber, FailLog, SuccessLog, Log);
+            Rooms fetchedRoom = base.FetchEntity(dataConnection, room => room.RoomNumber == inputRoomNumber, FailLog, SuccessLog, Log);
+            if(fetchedRoom != null) selectedRoomKey.Value = fetchedRoom.RoomNumber;
         }
 
         public override void InsertFields(Rooms room)
@@ -75,6 +80,7 @@ namespace HotelReservationsApp.Windows
             int capacity = int.Parse(RoomCapacityInput.Text);
             Rooms room = new Rooms() { RoomNumber = roomNumber, Capacity = capacity, FloorNumber = floorNumber, PriceForNight = price, RoomSize = size, RoomType = type };
             Result result = dataConnection.InsertEntity(room);
+            selectedRoomKey.Value = room.RoomNumber;
             return result;
         }
     }

@@ -8,7 +8,7 @@ create table Rooms (
 )
 
 create table Customers (
-	Id int primary key,
+	Id int IDENTITY(1,1) primary key,
 	Name varchar(255) not null,
 	Surname varchar(255) not null,
 	Email varchar(255) not null,
@@ -16,7 +16,7 @@ create table Customers (
 )
 
 create table Reservations (
-	Id int primary key,
+	Id int IDENTITY(1,1) primary key,
 	CustomerID int foreign key references Customers(Id),
 	RoomID int foreign key references Rooms(RoomNumber),
 	StartDate Date not null,

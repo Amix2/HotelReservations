@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace HotelReservationsApp.Model.Validator
 {
-    static class SpecificCheckercs
+    static class SpecificChecks
     {
         const string emailRegex = @"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$";
-        const string phoneRegex = @"(^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*)([;]( )*([+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*))*";
+        const string phoneRegex = @"(^[0-9\+]{1,}[0-9\-]{3,15})([;][0-9\+]{1,}[0-9\-]{3,15})*$";
 
         public static bool ValidateEmail(string email)
         {

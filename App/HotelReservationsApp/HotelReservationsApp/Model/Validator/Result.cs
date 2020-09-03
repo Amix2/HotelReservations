@@ -12,7 +12,8 @@ namespace HotelReservationsApp.Model.Validator
         NONE,
         SUCCESS,
         ALREADY_IN_DATABASE_IDENTICAL,
-        ALREADY_IN_DATABASE_DIFFERENT
+        ALREADY_IN_DATABASE_DIFFERENT,
+        WRONG_PARAMETER
     }
 
     public class Result
@@ -47,6 +48,8 @@ namespace HotelReservationsApp.Model.Validator
                     return "Already in database with itentical properties";
                 case ResultType.ALREADY_IN_DATABASE_DIFFERENT:
                     return "Already in database with different properties";
+                case ResultType.WRONG_PARAMETER:
+                    return "Wrong parameter";
                 default:
                     return me.ToString();
             }

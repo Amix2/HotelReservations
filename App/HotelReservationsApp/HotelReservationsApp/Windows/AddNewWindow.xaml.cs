@@ -1,20 +1,10 @@
-﻿using HotelReservationsApp.DBModels;
+﻿using HotelReservationsApp.Misc;
 using HotelReservationsApp.Model;
 using HotelReservationsApp.Model.Validator;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace HotelReservationsApp.Windows
 {
@@ -23,18 +13,28 @@ namespace HotelReservationsApp.Windows
     /// </summary>
     public partial class AddNewWindow : Window
     {
-
         private readonly DataConnection dataConnection;
         private readonly RoomCreator roomCreator;
+        private Integer selectedRoomKey = new Integer(-1);
         private readonly CustomerCreator customerCreator;
+        private Integer selectedCustomerKey = new Integer(-1);
+        private readonly ReservationCreator reservationCreator;
+        private Integer selectedReservationKey = new Integer(-1);
+
+
 
         public AddNewWindow(DataConnection dataConnection)
         {
             InitializeComponent();
             this.dataConnection = dataConnection;
+
             roomCreator = new RoomCreator(RoomNumberInput, RoomCapacityInput, RoomFloorNumberInput, RoomPriceInput, RoomSizeInput, RoomTypeInput
-                , log => UpdateLogLabel(log));
-            customerCreator = new CustomerCreator(CustNameInput, CustSurnameInput, CustEmailInput, CustPhoneInput, log => UpdateLogLabel(log));
+                , log => UpdateLogLabel(log), selectedRoomKey);
+
+            customerCreator = new CustomerCreator(CustNameInput, CustSurnameInput, CustEmailInput, CustPhoneInput, log => UpdateLogLabel(log), selectedCustomerKey);
+
+            reservationCreator = new ReservationCreator(selectedRoomKey, selectedCustomerKey, ResStartDateInput, ResEndDateInput, ResVisitorsCountInput
+                , log => UpdateLogLabel(log), selectedReservationKey);
         }
 
         private void FetchRoomButton_Click(object sender, RoutedEventArgs e)
@@ -48,6 +48,7 @@ namespace HotelReservationsApp.Windows
         }
 
         private static CancellationTokenSource _cancellationTokenSource = new CancellationTokenSource();
+
         private async void UpdateLogLabel(string text)
         {
             LogLabel.Content = text;
@@ -63,30 +64,31 @@ namespace HotelReservationsApp.Windows
 
         private void AddRoomButton_Click(object sender, RoutedEventArgs e)
         {
+            AddNewEntity(roomCreator);
+        }
+
+
+        private void AddCustomerButton_Click(object sender, RoutedEventArgs e)
+        {
+            AddNewEntity(customerCreator);
+        }
+
+        private void AddReservationButton_Click(object sender, RoutedEventArgs e)
+        {
+            AddNewEntity(reservationCreator);
+        }
+
+        private void AddNewEntity<T>(AbstractCreator<T> creator) where T : class
+        {
             try
             {
-                Result result = roomCreator.AddNewEntity(dataConnection);
-                UpdateLogLabel(result.type.ToFriendlyString());
+                Result result = creator.AddNewEntity(dataConnection);
+                UpdateLogLabel(result.type.ToFriendlyString() + (result.details != string.Empty ? " : " + result.details : ""));
             }
             catch (Exception exe)
             {
                 UpdateLogLabel(exe.Message);
-                //throw exe;
             }
-        }
-
-        private void AddCustomerButton_Click(object sender, RoutedEventArgs e)
-        {
-            //try
-            //{
-                Result result = customerCreator.AddNewEntity(dataConnection);
-                UpdateLogLabel(result.type.ToFriendlyString());
-            //}
-            //catch (Exception exe)
-            //{
-            //    UpdateLogLabel(exe.Message);
-            //    //throw exe;
-            //}
         }
 
     }

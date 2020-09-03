@@ -8,27 +8,21 @@ using System.Threading.Tasks;
 
 namespace HotelReservationsApp.Model.Validator
 {
-    class CustomerInsertVlidator : IEntityValidator<Customers>
+    class ReservationInsertValidator : IEntityValidator<Reservations>
     {
-
-        public bool Validate(Customers entity, DataConnection dataConnection, out Result result)
+        public bool Validate(Reservations entity, DataConnection dataConnection, out Result result)
         {
             List<string> errors = new List<string>();
-            if(!SpecificChecks.ValidateEmail(entity.Email))
-            {
-                errors.Add("email is incorrect");
-            }
-            if (!SpecificChecks.ValidatePhone(entity.Phone))
-            {
-                errors.Add("phone number is incorrect");
-            }
-            if (errors.Count > 0)
+            if (entity.RoomId == -1) errors.Add("Room Id not set");
+            if (entity.CustomerId == -1) errors.Add("Customer Id not set");
+            if (entity.VisitorsCount < 0) errors.Add("Visitors count is below 0");
+            if(errors.Count > 0)
             {
                 result = new Result(ResultType.WRONG_PARAMETER, errors.Join());
                 return false;
             }
 
-            var entityInDBList = dataConnection.GetEntitiesWithFilter<Customers>(customer => customer.Name == entity.Name && customer.Surname == entity.Surname);
+            var entityInDBList = dataConnection.GetEntitiesWithFilter<Reservations>(reservation => reservation.Id == entity.Id);
             if (entityInDBList.Count() > 0)
             {   // already exists in db, dont add, just check fields
                 var entityInDB = entityInDBList.First();
@@ -42,7 +36,7 @@ namespace HotelReservationsApp.Model.Validator
                 }
                 return false;
             }
-
+            
             result = new Result(ResultType.SUCCESS);
             return true;
         }

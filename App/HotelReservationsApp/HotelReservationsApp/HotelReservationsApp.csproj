@@ -180,14 +180,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="DBModelsExtensions\Customers.cs" />
     <Compile Include="DBModels\Customers.cs" />
     <Compile Include="DBModels\HotelReservationsContext.cs" />
     <Compile Include="DBModels\Reservations.cs" />
     <Compile Include="DBModels\Rooms.cs" />
+    <Compile Include="Misc\Integer.cs" />
     <Compile Include="Model\Validator\CustomerInsertVlidator.cs" />
-    <Compile Include="Model\Validator\SpecificCheckercs.cs" />
+    <Compile Include="Model\Validator\ReservationValidator.cs" />
+    <Compile Include="Model\Validator\SpecificChecks.cs" />
     <Compile Include="Windows\AbstractCreator.cs" />
     <Compile Include="Windows\CustomerCreator.cs" />
+    <Compile Include="Windows\ReservationCreator.cs" />
     <Compile Include="Windows\RoomCreator.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

@@ -58,8 +58,7 @@ namespace HotelReservationsApp.Model
 
             // add item
             DbSet<T> table = GetTable<T>();
-           // table.Add(item);
-            hotelReservationsContext.Add(item);
+            table.Add(item);
             hotelReservationsContext.SaveChanges();
             OnDBChange?.Invoke(hotelReservationsContext, typeof(T));
             return new Result(ResultType.SUCCESS);

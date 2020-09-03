@@ -4,9 +4,8 @@
     "\\App",
     "\\App\\HotelReservationsApp",
     "\\App\\HotelReservationsApp\\HotelReservationsApp",
-    "\\App\\HotelReservationsApp\\HotelReservationsApp\\DBModels",
-    "\\App\\HotelReservationsApp\\HotelReservationsApp\\Windows"
+    "\\App\\HotelReservationsApp\\HotelReservationsApp\\DBModels"
   ],
-  "SelectedNode": "\\App\\HotelReservationsApp\\HotelReservationsApp\\DBModels\\Customers.cs",
+  "SelectedNode": "\\App\\HotelReservationsApp\\HotelReservationsApp\\Windows",
   "PreviewInSolutionExplorer": false
 }

@@ -32,8 +32,6 @@ namespace HotelReservationsApp.DBModels
         {
             modelBuilder.Entity<Customers>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedNever();
-
                 entity.Property(e => e.Email)
                     .IsRequired()
                     .HasMaxLength(255)
@@ -57,8 +55,6 @@ namespace HotelReservationsApp.DBModels
 
             modelBuilder.Entity<Reservations>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedNever();
-
                 entity.Property(e => e.CustomerId).HasColumnName("CustomerID");
 
                 entity.Property(e => e.EndDate).HasColumnType("date");
@@ -70,12 +66,12 @@ namespace HotelReservationsApp.DBModels
                 entity.HasOne(d => d.Customer)
                     .WithMany(p => p.Reservations)
                     .HasForeignKey(d => d.CustomerId)
-                    .HasConstraintName("FK__Reservati__Custo__440B1D61");
+                    .HasConstraintName("FK__Reservati__Custo__49C3F6B7");
 
                 entity.HasOne(d => d.Room)
                     .WithMany(p => p.Reservations)
                     .HasForeignKey(d => d.RoomId)
-                    .HasConstraintName("FK__Reservati__RoomI__44FF419A");
+                    .HasConstraintName("FK__Reservati__RoomI__4AB81AF0");
             });
 
             modelBuilder.Entity<Rooms>(entity =>
