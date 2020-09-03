@@ -1,0 +1,10 @@
+﻿Numer pokoju;Piętro;Typ pokoju;Metraż;Liczba miejsc;Cena za noc;Od;Do;Liczba gości;Imię;Nazwisko;Mail;Telefon
+13;1;Apartament;45;4;250;09.11.2019;19.11.2019;3;Janina;Krasna;j.krasna@wp.pl;111-111-111
+22;2;Pokój z prywatną łazienką;30;3;190;01.07.2020;09.07.2020;3;Brygida;Bańka;bryg.banka@b.b;333-333-333
+11;1;Pokój z prywatną łazienką;28;2;150;01.08.2020;07.08.2020;2;Jan;Kowalski;j.kowalski@g.com;000-000-001
+12;1;Pokój ze wspólną łazienką;15;2;100;02.08.2020;05.08.2020;2;Zbigniew;Nowak;zbigin@op.pl;000-000-100
+23;2;Pokój ze wspólną łazienką;15;2;100;02.08.2020;05.08.2020;1;Janusz;Krawiec;janusz@k.k;555-000-100
+13;1;Apartament;45;4;250;07.08.2020;20.08.2020;3;Janina;Krasna;j.krasna@wp.pl;111-111-111
+21;2;Pokój z prywatną łazienką;22;2;120;07.08.2020;15.08.2020;2;Adam;Zborowski;a.zborowski@a.pl;222-222-222
+22;2;Pokój z prywatną łazienką;30;3;190;12.08.2020;16.08.2020;3;Brygida;Bańka;bryg.banka@b.b;333-333-333
+23;2;Pokój ze wspólną łazienką;15;2;100;15.08.2020;18.08.2020;1;Janusz;Krawiec;janusz@k.k;555-000-100
