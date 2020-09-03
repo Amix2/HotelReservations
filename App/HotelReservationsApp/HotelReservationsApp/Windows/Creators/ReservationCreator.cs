@@ -37,9 +37,7 @@ namespace HotelReservationsApp.Windows
 
         public override Result AddNewEntity(DataConnection dataConnection)
         {
-
-
-            if(!ParseFields(out int visitorsCount, out DateTime startDate, out DateTime endDate, out Result result))
+            if (!ParseFields(out int visitorsCount, out DateTime startDate, out DateTime endDate, out Result result))
             {
                 return result;
             }
@@ -50,8 +48,6 @@ namespace HotelReservationsApp.Windows
             selectedReservationKey.Value = reservation.Id;
             return result;
         }
-
-       
 
         internal Result EditEntity(DataConnection dataConnection)
         {

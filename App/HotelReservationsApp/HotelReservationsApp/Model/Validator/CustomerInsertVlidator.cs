@@ -1,20 +1,16 @@
 ﻿using HotelReservationsApp.DBModels;
 using Microsoft.EntityFrameworkCore.Internal;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HotelReservationsApp.Model.Validator
 {
-    class CustomerInsertVlidator : IEntityValidator<Customers>
+    internal class CustomerInsertVlidator : IEntityValidator<Customers>
     {
-
         public bool Validate(Customers entity, DataConnection dataConnection, out Result result)
         {
             List<string> errors = new List<string>();
-            if(!SpecificChecks.ValidateEmail(entity.Email))
+            if (!SpecificChecks.ValidateEmail(entity.Email))
             {
                 errors.Add("email is incorrect");
             }

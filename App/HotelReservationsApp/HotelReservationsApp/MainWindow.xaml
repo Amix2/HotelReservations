@@ -8,41 +8,37 @@
         Title="MainWindow" Height="593.487" Width="888.363">
     <Grid ShowGridLines="False" Margin="0,0,2,0">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="405*"/>
-            <ColumnDefinition Width="446*"/>
-            <ColumnDefinition Width="27*"/>
-
+            <ColumnDefinition Width="405*" />
+            <ColumnDefinition Width="446*" />
+            <ColumnDefinition Width="27*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="77"/>
-            <RowDefinition Height="455"/>
-            <RowDefinition Height="33"/>
+            <RowDefinition Height="77" />
+            <RowDefinition Height="455" />
+            <RowDefinition Height="33" />
         </Grid.RowDefinitions>
 
         <DockPanel Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,0,57">
             <Menu DockPanel.Dock="Top">
                 <MenuItem Header="Add">
-                    <MenuItem Header="Add room" Click="MenuItem_Add"/>
-                    <MenuItem Header="Add customer" Click="MenuItem_Add"/>
-                    <MenuItem Header="Add reservation" Click="MenuItem_Add"/>
+                    <MenuItem Header="Add" Click="MenuItem_Add" />
                 </MenuItem>
                 <MenuItem Header="Import">
-                    <MenuItem Header="Import reservations" Click="MenuItem_ImportCSV"/>
+                    <MenuItem Header="Import reservations" Click="MenuItem_ImportCSV" />
                 </MenuItem>
             </Menu>
-
         </DockPanel>
-        <Label Grid.Row="0" Grid.Column="0" Content="Reservations" FontSize="20" Margin="0,26,1,10"/>
+        <Label Grid.Row="0" Grid.Column="0" Content="Reservations" FontSize="20" Margin="0,26,1,10" />
         <ListView x:Name="ReservationListView" Grid.Row="1" Grid.Column="0" Margin="0,10,1,0" FontSize="15" Grid.RowSpan="2">
-            <ListViewItem Content="ListViewItem"/>
-            <ListViewItem Content="ListViewItem"/>
-            <ListViewItem Content="ListViewItem"/>
-            <ListViewItem Content="ListViewItem"/>
-            <ListViewItem Content="ListViewItem"/>
-            <ListViewItem Content="ListViewItem"/>
-            <ListViewItem Content="ListViewItem"/>
-            <ListViewItem Content="ListViewItem"/>
-            <ListViewItem Content="ListViewItem"/>
+            <ListViewItem Content="ListViewItem" />
+            <ListViewItem Content="ListViewItem" />
+            <ListViewItem Content="ListViewItem" />
+            <ListViewItem Content="ListViewItem" />
+            <ListViewItem Content="ListViewItem" />
+            <ListViewItem Content="ListViewItem" />
+            <ListViewItem Content="ListViewItem" />
+            <ListViewItem Content="ListViewItem" />
+            <ListViewItem Content="ListViewItem" />
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
                     <EventSetter Event="MouseDoubleClick" Handler="ReservationsListView_ItemDoubleClick" />
@@ -50,14 +46,12 @@
                 </Style>
             </ListView.ItemContainerStyle>
         </ListView>
-        <Label Grid.Row="2" Grid.Column="0" x:Name="RoomCustomerCountText"  Content="Rooms: #, Customers: #"/>
+        <Label Grid.Row="2" Grid.Column="0" x:Name="RoomCustomerCountText"  Content="Rooms: #, Customers: #" />
         <Grid Grid.Column="1" Grid.RowSpan="2" HorizontalAlignment="Left" Height="479" Margin="10,0,0,0" VerticalAlignment="Top" Width="463" Background="BlanchedAlmond" Grid.Row="1" Grid.ColumnSpan="2">
 
-            <Label x:Name="ReservationInfoPanel" Content="" HorizontalAlignment="Left" Margin="10,35,0,-8" VerticalAlignment="Top" RenderTransformOrigin="1.236,2.338" Height="452" Width="445"/>
-            <Button Content="Delete" HorizontalAlignment="Left" Margin="90,10,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="2.994,4.261" Click="DeleteReservationButton_Click"/>
-            <Button Content="Edit" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.524,1.926" Click="EditReservationButton_Click"/>
+            <Label x:Name="ReservationInfoPanel" Content="" HorizontalAlignment="Left" Margin="10,35,0,-8" VerticalAlignment="Top" RenderTransformOrigin="1.236,2.338" Height="452" Width="445" />
+            <Button Content="Delete" HorizontalAlignment="Left" Margin="90,10,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="2.994,4.261" Click="DeleteReservationButton_Click" />
+            <Button Content="Edit" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.524,1.926" Click="EditReservationButton_Click" />
         </Grid>
-
-
     </Grid>
 </Window>

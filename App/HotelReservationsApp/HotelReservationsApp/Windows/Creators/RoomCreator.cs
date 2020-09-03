@@ -4,7 +4,6 @@ using HotelReservationsApp.Model;
 using HotelReservationsApp.Model.Validator;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Windows.Controls;
 
 namespace HotelReservationsApp.Windows
@@ -18,7 +17,7 @@ namespace HotelReservationsApp.Windows
         private TextBox RoomSizeInput;
         private TextBox RoomTypeInput;
         private Action<string> Log;
-        Integer selectedRoomKey;
+        private Integer selectedRoomKey;
 
         public RoomCreator(TextBox roomNumberInput, TextBox roomCapacityInput, TextBox roomFloorNumberInput, TextBox roomPriceInput, TextBox roomSizeInput, TextBox roomTypeInput
             , Action<string> log, Integer selectedRoomKey)
@@ -58,7 +57,7 @@ namespace HotelReservationsApp.Windows
             const string FailLog = "Fetch Failed - Room with provided number couldnt be found";
             const string SuccessLog = "Fetch Successful";
             Rooms fetchedRoom = base.FetchEntity(dataConnection, room => room.RoomNumber == inputRoomNumber, FailLog, SuccessLog, Log);
-            if(fetchedRoom != null) selectedRoomKey.Value = fetchedRoom.RoomNumber;
+            if (fetchedRoom != null) selectedRoomKey.Value = fetchedRoom.RoomNumber;
         }
 
         public override void InsertFields(Rooms room)

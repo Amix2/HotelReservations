@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace HotelReservationsApp.DBModels
 {
@@ -15,6 +14,7 @@ namespace HotelReservationsApp.DBModels
         {
             return HashCode.Combine(Id, CustomerId, RoomId, StartDate, EndDate, VisitorsCount, Customer, Room);
         }
+
         public override string ToString()
         {
             return string.Format("{3} - {4}: Room: {0}; {1} {2}", RoomId, Customer.Name, Customer.Surname, StartDate.ToString("d"), EndDate.ToString("d"));

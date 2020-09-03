@@ -2,25 +2,23 @@
 using HotelReservationsApp.Model.Validator;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Controls;
 
 namespace HotelReservationsApp.Windows
 {
-    abstract class AbstractCreator<T> where T : class
+    internal abstract class AbstractCreator<T> where T : class
     {
         protected IEnumerable<TextBox> textBoxesToBlock;
 
         public abstract void InsertFields(T entity);
+
         public abstract Result AddNewEntity(DataConnection dataConnection);
 
         protected T FetchEntity(DataConnection dataConnection, Expression<Func<T, bool>> filter, string failLog, string successLog, Action<string> Log)
         {
-            var fetchedEntity = dataConnection.GetEntitiesWithFilter<T>(filter);
-            if (fetchedEntity.Count() == 0)
+            T fetchedEntity = dataConnection.GetFirstEntytiWithFilter<T>(filter);
+            if (fetchedEntity == null)
             {
                 Log?.Invoke(failLog);
                 UnblockInputTextBoxes();
@@ -29,16 +27,15 @@ namespace HotelReservationsApp.Windows
             else
             {
                 Log?.Invoke(successLog);
-                T entity = fetchedEntity.First();
-                InsertFields(entity);
+                InsertFields(fetchedEntity);
                 BlockInputTextBoxes();
-                return entity;
+                return fetchedEntity;
             }
         }
 
         public void BlockInputTextBoxes()
         {
-            foreach(var textBox in textBoxesToBlock)
+            foreach (var textBox in textBoxesToBlock)
             {
                 textBox.IsEnabled = false;
             }

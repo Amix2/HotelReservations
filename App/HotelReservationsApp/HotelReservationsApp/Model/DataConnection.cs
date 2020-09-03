@@ -1,6 +1,5 @@
 ﻿using HotelReservationsApp.DBModels;
 using HotelReservationsApp.Model.Validator;
-using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,13 +12,11 @@ namespace HotelReservationsApp.Model
     {
         public Action<HotelReservationsContext, Type> OnDBChange;
 
-        private readonly Dictionary<Type, object> insertValidators;
-
-        public Dictionary<Type, object> InsertValidators => insertValidators;
+        public Dictionary<Type, object> InsertValidators { get; private set; }
 
         public DataConnection()
         {
-            insertValidators = new Dictionary<Type, object>();
+            InsertValidators = new Dictionary<Type, object>();
         }
 
         public Result InsertEntity<T>(T item, bool ignoreValidation = false) where T : class
@@ -41,32 +38,6 @@ namespace HotelReservationsApp.Model
                 context.Add(item);
                 context.SaveChanges();
                 OnDBChange?.Invoke(context, typeof(T));
-            }
-            return new Result(ResultType.SUCCESS);
-        }
-
-        internal DbSet<T> GetTable<T>() where T : class
-        {
-            using (DBContext context = new HotelReservationsContext())
-            {
-                return context.Set<T>();
-            }
-        }
-
-        private Result Validate<T>(T entity) where T : class
-        {
-            Result result;
-            if (insertValidators.TryGetValue(typeof(T), out object validatorObject))
-            {
-                IEntityValidator<T> validator = (IEntityValidator<T>)validatorObject;
-                if (!validator.Validate(entity, this, out result))
-                {
-                    return result;
-                }
-            }
-            else
-            {
-                throw new Exception(string.Format("Insert Validator for type {0} is not set, use AddInsertValidator()", typeof(T).ToString()));
             }
             return new Result(ResultType.SUCCESS);
         }
@@ -100,6 +71,24 @@ namespace HotelReservationsApp.Model
             return new Result(ResultType.SUCCESS);
         }
 
+        public Result Validate<T>(T entity) where T : class
+        {
+            Result result;
+            if (InsertValidators.TryGetValue(typeof(T), out object validatorObject))
+            {
+                IEntityValidator<T> validator = (IEntityValidator<T>)validatorObject;
+                if (!validator.Validate(entity, this, out result))
+                {
+                    return result;
+                }
+            }
+            else
+            {
+                throw new Exception(string.Format("Insert Validator for type {0} is not set, use AddInsertValidator()", typeof(T).ToString()));
+            }
+            return new Result(ResultType.SUCCESS);
+        }
+
         public int GetTableCount<T>() where T : class
         {
             using (DBContext context = new HotelReservationsContext())
@@ -120,15 +109,24 @@ namespace HotelReservationsApp.Model
             }
         }
 
-        public bool ContainsEntity<T>(T entity, DBContext context) where T : class
+        public T GetFirstEntytiWithFilter<T>(Expression<Func<T, bool>> filter) where T : class
+        {
+            using (DBContext context = new HotelReservationsContext())
+            {
+                var table = context.Set<T>();
+                return table.Where<T>(filter).FirstOrDefault();
+            }
+        }
+
+        private bool ContainsEntity<T>(T entity, DBContext context) where T : class
         {
             return context.Set<T>().Any(x => x.Equals(entity));
         }
 
         public void AddInsertValidator<T>(IEntityValidator<T> validator) where T : class
         {
-            if (insertValidators.ContainsKey(typeof(T))) throw new Exception("Insert Validator for given type already exists");
-            insertValidators.Add(typeof(T), validator);
+            if (InsertValidators.ContainsKey(typeof(T))) throw new Exception("Insert Validator for given type already exists");
+            InsertValidators.Add(typeof(T), validator);
         }
     }
 }

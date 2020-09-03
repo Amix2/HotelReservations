@@ -2,7 +2,6 @@
 using HotelReservationsApp.Misc;
 using HotelReservationsApp.Model;
 using HotelReservationsApp.Model.Validator;
-using System;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
@@ -21,7 +20,6 @@ namespace HotelReservationsApp.Windows
         private Integer selectedCustomerKey = new Integer(-1);
         private readonly ReservationCreator reservationCreator;
         private Integer selectedReservationKey = new Integer(-1);
-
 
         public AddNewWindow(DataConnection dataConnection)
         {
@@ -56,13 +54,10 @@ namespace HotelReservationsApp.Windows
             customerCreator.FetchCustomer(dataConnection);
         }
 
- 
-
         private void AddRoomButton_Click(object sender, RoutedEventArgs e)
         {
             AddNewEntity(roomCreator);
         }
-
 
         private void AddCustomerButton_Click(object sender, RoutedEventArgs e)
         {
@@ -76,16 +71,14 @@ namespace HotelReservationsApp.Windows
 
         private void EditReservationButton_Click(object sender, RoutedEventArgs e)
         {
-            Result result =  reservationCreator.EditEntity(dataConnection);
+            Result result = reservationCreator.EditEntity(dataConnection);
             UpdateLogLabel(result);
         }
 
         private void AddNewEntity<T>(AbstractCreator<T> creator) where T : class
         {
-
             Result result = creator.AddNewEntity(dataConnection);
             UpdateLogLabel(result);
-
         }
 
         private void UpdateLogLabel(Result result)
@@ -107,6 +100,5 @@ namespace HotelReservationsApp.Windows
             }
             catch (TaskCanceledException) { }
         }
-
     }
 }

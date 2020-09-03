@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace HotelReservationsApp.Model.Validator
+﻿namespace HotelReservationsApp.Model.Validator
 {
     public enum ResultType
     {
@@ -42,14 +35,19 @@ namespace HotelReservationsApp.Model.Validator
             {
                 case ResultType.NONE:
                     return "None";
+
                 case ResultType.SUCCESS:
                     return "Success";
+
                 case ResultType.ALREADY_IN_DATABASE:
                     return "Already in database";
+
                 case ResultType.WRONG_PARAMETER:
                     return "Wrong parameter";
+
                 case ResultType.NOT_IN_DATABASE:
                     return "Not in database";
+
                 default:
                     return me.ToString();
             }

@@ -1,20 +1,14 @@
 ﻿using HotelReservationsApp.DBModels;
 using HotelReservationsApp.Model;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Controls;
 
 namespace HotelReservationsApp.Windows
 {
-    class ReservationsList
+    internal class ReservationsList
     {
-        ListView ListView;
-        Label InfoLabel;
-        DataConnection dataConnection;
+        private ListView ListView;
+        private Label InfoLabel;
+        private DataConnection dataConnection;
 
         public ReservationsList(ListView listView, Label infoLabel, DataConnection dataConnection)
         {
@@ -44,14 +38,14 @@ namespace HotelReservationsApp.Windows
 
         public void ItemSelected(Reservations reservation)
         {
-            if(reservation != null)
+            if (reservation != null)
             {
                 InfoLabel.Content = reservation.GetFullDescription();
-            } else
+            }
+            else
             {
                 InfoLabel.Content = string.Empty;
             }
         }
-
     }
 }

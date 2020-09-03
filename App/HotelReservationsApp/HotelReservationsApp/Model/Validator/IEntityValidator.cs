@@ -1,8 +1,4 @@
-﻿
-
-using Microsoft.EntityFrameworkCore;
-
-namespace HotelReservationsApp.Model.Validator
+﻿namespace HotelReservationsApp.Model.Validator
 {
     public interface IEntityValidator<T> where T : class
     {

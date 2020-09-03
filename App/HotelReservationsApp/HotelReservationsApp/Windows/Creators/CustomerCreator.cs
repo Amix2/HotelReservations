@@ -4,20 +4,16 @@ using HotelReservationsApp.Model;
 using HotelReservationsApp.Model.Validator;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Controls;
-
 
 namespace HotelReservationsApp.Windows
 {
-    class CustomerCreator : AbstractCreator<Customers>
+    internal class CustomerCreator : AbstractCreator<Customers>
     {
-        TextBox CustNameInput;
-        TextBox CustSurnameInput;
-        TextBox CustEmailInput;
-        TextBox CustPhoneInput;
+        private TextBox CustNameInput;
+        private TextBox CustSurnameInput;
+        private TextBox CustEmailInput;
+        private TextBox CustPhoneInput;
         private Action<string> Log;
         private Integer selectedCustomerKey;
 
@@ -44,7 +40,7 @@ namespace HotelReservationsApp.Windows
             const string FailLog = "Fetch Failed - Customer with provided name and surname couldnt be found";
             const string SuccessLog = "Fetch Successful";
             Customers fetchedCustomer = base.FetchEntity(dataConnection, customer => customer.Name == name && customer.Surname == surname, FailLog, SuccessLog, Log);
-            if(fetchedCustomer != null) selectedCustomerKey.Value = fetchedCustomer.Id;
+            if (fetchedCustomer != null) selectedCustomerKey.Value = fetchedCustomer.Id;
         }
 
         public override void InsertFields(Customers customer)

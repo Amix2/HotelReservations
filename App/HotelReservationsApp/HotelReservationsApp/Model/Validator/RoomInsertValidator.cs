@@ -1,15 +1,11 @@
 ﻿using HotelReservationsApp.DBModels;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Internal;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HotelReservationsApp.Model.Validator
 {
-    class RoomInsertValidator : IEntityValidator<Rooms>
+    internal class RoomInsertValidator : IEntityValidator<Rooms>
     {
         public bool Validate(Rooms entity, DataConnection dataConnection, out Result result)
         {
