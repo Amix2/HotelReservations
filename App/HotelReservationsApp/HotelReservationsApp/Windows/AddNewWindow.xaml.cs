@@ -76,21 +76,21 @@ namespace HotelReservationsApp.Windows
 
         private void EditReservationButton_Click(object sender, RoutedEventArgs e)
         {
-            reservationCreator.EditEntity(dataConnection);
+            Result result =  reservationCreator.EditEntity(dataConnection);
+            UpdateLogLabel(result);
         }
 
         private void AddNewEntity<T>(AbstractCreator<T> creator) where T : class
         {
-            //try
-            //{
-                Result result = creator.AddNewEntity(dataConnection);
-                UpdateLogLabel(result.type.ToFriendlyString() + (result.details != string.Empty ? " : " + result.details : ""));
-            //}
-            //catch (Exception exe)
-            //{
-            //    UpdateLogLabel(exe.Message);
-            //    throw exe;
-            //}
+
+            Result result = creator.AddNewEntity(dataConnection);
+            UpdateLogLabel(result);
+
+        }
+
+        private void UpdateLogLabel(Result result)
+        {
+            UpdateLogLabel(result.type.ToFriendlyString() + (result.details != string.Empty ? " : " + result.details : ""));
         }
 
         private static CancellationTokenSource _cancellationTokenSource = new CancellationTokenSource();

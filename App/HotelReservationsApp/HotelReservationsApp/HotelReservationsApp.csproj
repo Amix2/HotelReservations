@@ -187,6 +187,7 @@
     <Compile Include="DBModels\Reservations.cs" />
     <Compile Include="DBModels\Rooms.cs" />
     <Compile Include="Misc\Integer.cs" />
+    <Compile Include="Model\DataConnectionExtension.cs" />
     <Compile Include="Model\Validator\CustomerInsertVlidator.cs" />
     <Compile Include="Model\Validator\ReservationValidator.cs" />
     <Compile Include="Model\Validator\SpecificChecks.cs" />

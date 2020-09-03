@@ -35,7 +35,7 @@ namespace HotelReservationsApp.Windows
         private void FillListVIew(DataConnection dataConnection)
         {
             ListView.Items.Clear();
-            var reservations = dataConnection.GetTable<Reservations>().Include(reservation => reservation.Room).Include(reservation => reservation.Customer);
+            var reservations = dataConnection.AllReservations();
             foreach (Reservations reservation in reservations)
             {
                 ListView.Items.Add(new ReservationListViewItem(reservation));

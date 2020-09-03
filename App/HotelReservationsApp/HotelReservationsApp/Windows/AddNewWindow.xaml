@@ -129,7 +129,7 @@
             <TextBox x:Name="ResVisitorsCountInput" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Row="3" Grid.Column="1" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Center" Height="22" Margin="5,4,10,4" Width="86"  />
 
             <Button x:Name="AddReservationButton" Content="Add Reservation" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="92" RenderTransformOrigin="0.507,-1.35" Margin="0,10,0,0" Height="25" Click="AddReservationButton_Click" Grid.RowSpan="2"/>
-            <Button x:Name="EditReservationButton" Content="Add Reservation" Grid.Column="1" Grid.Row="5" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="92" RenderTransformOrigin="0.507,-1.35" Margin="0,10,0,0" Height="25" Click="EditReservationButton_Click" Grid.RowSpan="2"/>
+            <Button x:Name="EditReservationButton" Content="Edit Reservation" Grid.Column="1" Grid.Row="5" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="92" RenderTransformOrigin="0.507,-1.35" Margin="0,10,0,0" Height="25" Click="EditReservationButton_Click" Grid.RowSpan="2"/>
 
         </Grid>
 
