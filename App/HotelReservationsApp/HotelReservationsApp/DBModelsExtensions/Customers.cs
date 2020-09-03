@@ -8,10 +8,7 @@ namespace HotelReservationsApp.DBModels
         {
             if (!(obj is Customers)) return false;
             Customers other = (Customers)obj;
-            return other.Name == Name
-                && other.Surname == Surname
-                && other.Email == Email
-                && other.Phone == Phone;
+            return other.Id == Id;
         }
 
         public override int GetHashCode()

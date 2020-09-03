@@ -1,5 +1,6 @@
 ﻿using HotelReservationsApp.DBModels;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Internal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,18 +13,13 @@ namespace HotelReservationsApp.Model.Validator
     {
         public bool Validate(Rooms entity, DataConnection dataConnection, out Result result)
         {
-            var roomInDBList = dataConnection.GetEntitiesWithFilter<Rooms>(room => room.RoomNumber == entity.RoomNumber);
-            if(roomInDBList.Count() > 0)
-            {   // room already exists in db, dont add, just check fields
-                var roomInDB = roomInDBList.First();
-                if (roomInDB.Equals(entity))
-                {
-                    result = new Result(ResultType.ALREADY_IN_DATABASE_IDENTICAL);
-                }
-                else
-                {
-                    result = new Result(ResultType.ALREADY_IN_DATABASE_DIFFERENT);
-                }
+            List<string> errors = new List<string>();
+            if (entity.RoomSize < 0) errors.Add("Room Size is less than 0");
+            if (entity.PriceForNight < 0) errors.Add("Price is less than 0");
+            if (entity.Capacity < 0) errors.Add("Capacity is below 0");
+            if (errors.Count > 0)
+            {
+                result = new Result(ResultType.WRONG_PARAMETER, errors.Join());
                 return false;
             }
             result = new Result(ResultType.SUCCESS);

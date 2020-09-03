@@ -63,11 +63,13 @@ namespace HotelReservationsApp.Windows
 
         public override void InsertFields(Rooms room)
         {
+            RoomNumberInput.Text = room.RoomNumber.ToString();
             RoomCapacityInput.Text = room.Capacity.HasValue ? room.Capacity.Value.ToString() : "";
             RoomFloorNumberInput.Text = room.FloorNumber.HasValue ? room.FloorNumber.Value.ToString() : "";
             RoomPriceInput.Text = room.PriceForNight.HasValue ? room.PriceForNight.Value.ToString() : "";
             RoomSizeInput.Text = room.RoomSize.HasValue ? room.RoomSize.Value.ToString() : "";
             RoomTypeInput.Text = room.RoomType;
+            selectedRoomKey.Value = room.RoomNumber;
         }
 
         public override Result AddNewEntity(DataConnection dataConnection)

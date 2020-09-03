@@ -181,6 +181,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="DBModelsExtensions\Customers.cs" />
+    <Compile Include="DBModelsExtensions\Reservations.cs" />
     <Compile Include="DBModels\Customers.cs" />
     <Compile Include="DBModels\HotelReservationsContext.cs" />
     <Compile Include="DBModels\Reservations.cs" />
@@ -189,10 +190,12 @@
     <Compile Include="Model\Validator\CustomerInsertVlidator.cs" />
     <Compile Include="Model\Validator\ReservationValidator.cs" />
     <Compile Include="Model\Validator\SpecificChecks.cs" />
-    <Compile Include="Windows\AbstractCreator.cs" />
-    <Compile Include="Windows\CustomerCreator.cs" />
-    <Compile Include="Windows\ReservationCreator.cs" />
-    <Compile Include="Windows\RoomCreator.cs" />
+    <Compile Include="Windows\Creators\AbstractCreator.cs" />
+    <Compile Include="Windows\Creators\CustomerCreator.cs" />
+    <Compile Include="Windows\Creators\ReservationCreator.cs" />
+    <Compile Include="Windows\ReservationListViewItem.cs" />
+    <Compile Include="Windows\ReservationsList.cs" />
+    <Compile Include="Windows\Creators\RoomCreator.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

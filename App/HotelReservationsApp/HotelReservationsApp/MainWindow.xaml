@@ -5,11 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HotelReservationsApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="597.294" Width="885.825">
-    <Grid ShowGridLines="False">
+        Title="MainWindow" Height="593.487" Width="888.363">
+    <Grid ShowGridLines="False" Margin="0,0,2,0">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="205*"/>
-            <ColumnDefinition Width="673*"/>
+            <ColumnDefinition Width="405*"/>
+            <ColumnDefinition Width="446*"/>
+            <ColumnDefinition Width="27*"/>
 
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -45,11 +46,17 @@
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
                     <EventSetter Event="MouseDoubleClick" Handler="ReservationsListView_ItemDoubleClick" />
+                    <EventSetter Event="Selected" Handler="ReservationsListView_ItemClick" />
                 </Style>
             </ListView.ItemContainerStyle>
         </ListView>
-        <Label Grid.Row="2" Grid.Column="0" x:Name="RoomCustomerCountText"  Content="sdadasd"/>
-        <Grid Grid.Column="1" Grid.RowSpan="3" HorizontalAlignment="Left" Height="530" Margin="10,26,0,0" VerticalAlignment="Top" Width="649" Background="BlanchedAlmond"/>
+        <Label Grid.Row="2" Grid.Column="0" x:Name="RoomCustomerCountText"  Content="Rooms: #, Customers: #"/>
+        <Grid Grid.Column="1" Grid.RowSpan="2" HorizontalAlignment="Left" Height="479" Margin="10,0,0,0" VerticalAlignment="Top" Width="463" Background="BlanchedAlmond" Grid.Row="1" Grid.ColumnSpan="2">
+
+            <Label x:Name="ReservationInfoPanel" Content="" HorizontalAlignment="Left" Margin="10,35,0,-8" VerticalAlignment="Top" RenderTransformOrigin="1.236,2.338" Height="452" Width="445"/>
+            <Button Content="Delete" HorizontalAlignment="Left" Margin="90,10,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="2.994,4.261" Click="DeleteReservationButton_Click"/>
+            <Button Content="Edit" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.524,1.926" Click="EditReservationButton_Click"/>
+        </Grid>
 
 
     </Grid>

@@ -36,7 +36,7 @@ namespace HotelReservationsApp.Windows
             }
         }
 
-        protected void BlockInputTextBoxes()
+        public void BlockInputTextBoxes()
         {
             foreach(var textBox in textBoxesToBlock)
             {
@@ -44,7 +44,7 @@ namespace HotelReservationsApp.Windows
             }
         }
 
-        protected void UnblockInputTextBoxes()
+        public void UnblockInputTextBoxes()
         {
             foreach (var textBox in textBoxesToBlock)
             {

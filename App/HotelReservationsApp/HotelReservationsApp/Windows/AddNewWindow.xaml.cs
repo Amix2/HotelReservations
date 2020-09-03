@@ -1,4 +1,5 @@
-﻿using HotelReservationsApp.Misc;
+﻿using HotelReservationsApp.DBModels;
+using HotelReservationsApp.Misc;
 using HotelReservationsApp.Model;
 using HotelReservationsApp.Model.Validator;
 using System;
@@ -22,7 +23,6 @@ namespace HotelReservationsApp.Windows
         private Integer selectedReservationKey = new Integer(-1);
 
 
-
         public AddNewWindow(DataConnection dataConnection)
         {
             InitializeComponent();
@@ -37,6 +37,15 @@ namespace HotelReservationsApp.Windows
                 , log => UpdateLogLabel(log), selectedReservationKey);
         }
 
+        public AddNewWindow(DataConnection dataConnection, Reservations reservation) : this(dataConnection)
+        {
+            roomCreator.InsertFields(reservation.Room);
+            roomCreator.BlockInputTextBoxes();
+            customerCreator.InsertFields(reservation.Customer);
+            customerCreator.BlockInputTextBoxes();
+            reservationCreator.InsertFields(reservation);
+        }
+
         private void FetchRoomButton_Click(object sender, RoutedEventArgs e)
         {
             roomCreator.FetchRoom(dataConnection);
@@ -47,20 +56,7 @@ namespace HotelReservationsApp.Windows
             customerCreator.FetchCustomer(dataConnection);
         }
 
-        private static CancellationTokenSource _cancellationTokenSource = new CancellationTokenSource();
-
-        private async void UpdateLogLabel(string text)
-        {
-            LogLabel.Content = text;
-            _cancellationTokenSource.Cancel();
-            _cancellationTokenSource = new CancellationTokenSource();
-            try
-            {
-                await Task.Delay(5_000, _cancellationTokenSource.Token);
-                LogLabel.Content = string.Empty;
-            }
-            catch (TaskCanceledException) { }
-        }
+ 
 
         private void AddRoomButton_Click(object sender, RoutedEventArgs e)
         {
@@ -78,17 +74,38 @@ namespace HotelReservationsApp.Windows
             AddNewEntity(reservationCreator);
         }
 
+        private void EditReservationButton_Click(object sender, RoutedEventArgs e)
+        {
+            reservationCreator.EditEntity(dataConnection);
+        }
+
         private void AddNewEntity<T>(AbstractCreator<T> creator) where T : class
         {
-            try
-            {
+            //try
+            //{
                 Result result = creator.AddNewEntity(dataConnection);
                 UpdateLogLabel(result.type.ToFriendlyString() + (result.details != string.Empty ? " : " + result.details : ""));
-            }
-            catch (Exception exe)
+            //}
+            //catch (Exception exe)
+            //{
+            //    UpdateLogLabel(exe.Message);
+            //    throw exe;
+            //}
+        }
+
+        private static CancellationTokenSource _cancellationTokenSource = new CancellationTokenSource();
+
+        private async void UpdateLogLabel(string text)
+        {
+            LogLabel.Content = text;
+            _cancellationTokenSource.Cancel();
+            _cancellationTokenSource = new CancellationTokenSource();
+            try
             {
-                UpdateLogLabel(exe.Message);
+                await Task.Delay(5_000, _cancellationTokenSource.Token);
+                LogLabel.Content = string.Empty;
             }
+            catch (TaskCanceledException) { }
         }
 
     }

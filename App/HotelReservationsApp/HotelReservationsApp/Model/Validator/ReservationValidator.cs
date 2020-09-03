@@ -21,21 +21,6 @@ namespace HotelReservationsApp.Model.Validator
                 result = new Result(ResultType.WRONG_PARAMETER, errors.Join());
                 return false;
             }
-
-            var entityInDBList = dataConnection.GetEntitiesWithFilter<Reservations>(reservation => reservation.Id == entity.Id);
-            if (entityInDBList.Count() > 0)
-            {   // already exists in db, dont add, just check fields
-                var entityInDB = entityInDBList.First();
-                if (entityInDB.Equals(entity))
-                {
-                    result = new Result(ResultType.ALREADY_IN_DATABASE_IDENTICAL);
-                }
-                else
-                {
-                    result = new Result(ResultType.ALREADY_IN_DATABASE_DIFFERENT);
-                }
-                return false;
-            }
             
             result = new Result(ResultType.SUCCESS);
             return true;

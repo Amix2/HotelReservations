@@ -53,11 +53,13 @@ namespace HotelReservationsApp.Windows
             CustSurnameInput.Text = customer.Surname;
             CustEmailInput.Text = customer.Email;
             CustPhoneInput.Text = customer.Phone;
+            selectedCustomerKey.Value = customer.Id;
         }
 
         public override Result AddNewEntity(DataConnection dataConnection)
         {
-            Customers customer = new Customers() { Name = CustNameInput.Text, Surname = CustSurnameInput.Text, Phone = CustPhoneInput.Text, Email = CustEmailInput.Text };
+            int thisKey = selectedCustomerKey != -1 ? selectedCustomerKey.Value : 0;
+            Customers customer = new Customers() { Id = thisKey, Name = CustNameInput.Text, Surname = CustSurnameInput.Text, Phone = CustPhoneInput.Text, Email = CustEmailInput.Text };
             Result result = dataConnection.InsertEntity(customer);
             selectedCustomerKey.Value = customer.Id;
             return result;

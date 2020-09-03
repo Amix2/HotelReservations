@@ -9,12 +9,7 @@ namespace HotelReservationsApp.DBModels
         {
             if (!(obj is Rooms)) return false;
             Rooms other = (Rooms)obj;
-            return other.RoomNumber == RoomNumber
-                && other.RoomSize == RoomSize
-                && other.RoomType == RoomType
-                && other.PriceForNight == PriceForNight
-                && other.FloorNumber == FloorNumber
-                && other.Capacity == Capacity;
+            return other.RoomNumber == RoomNumber;
         }
 
         public override int GetHashCode()

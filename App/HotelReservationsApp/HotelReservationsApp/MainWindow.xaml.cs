@@ -27,6 +27,8 @@ namespace HotelReservationsApp
     {
 
         private DataConnection dataConnection;
+        private ReservationsList reservationsList;
+        private Reservations currentlySelectedReservation;
 
         private string RoomCustomerCountTextUpdate => string.Format("Rooms: {0}; Customers: {1}", dataConnection.GetTableCount<Rooms>(), dataConnection.GetTableCount<Customers>());
 
@@ -37,6 +39,8 @@ namespace HotelReservationsApp
             dataConnection.AddInsertValidator(new RoomInsertValidator());
             dataConnection.AddInsertValidator(new CustomerInsertVlidator());
             dataConnection.AddInsertValidator(new ReservationInsertValidator());
+
+            reservationsList = new ReservationsList(ReservationListView, ReservationInfoPanel, dataConnection);
 
 
             dataConnection.OnDBChange += (dbContext, type) =>
@@ -69,11 +73,39 @@ namespace HotelReservationsApp
 
         private void ReservationsListView_ItemDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            Console.WriteLine("qqqqqqqqqqqqqqqqq");
-            var item = sender as ListViewItem;
+            ListViewItem item = sender as ListViewItem;
             if (item != null && item.IsSelected)
             {
                 //Do your stuff
+            }
+        }
+        private void ReservationsListView_ItemClick(object sender, RoutedEventArgs e)
+        {
+            ListViewItem item = sender as ListViewItem;
+            if (item != null && item.IsSelected)
+            {
+                ReservationListViewItem reservationItem = sender as ReservationListViewItem;
+                currentlySelectedReservation = reservationItem.Reservation;
+                reservationsList.ItemSelected(reservationItem.Reservation);
+            }
+        }
+
+        private void DeleteReservationButton_Click(object sender, RoutedEventArgs e)
+        {
+            if(currentlySelectedReservation != null)
+            {
+            dataConnection.RemoveEntity(currentlySelectedReservation);
+            currentlySelectedReservation = null;
+            reservationsList.ItemSelected(null);
+            }
+        }
+
+        private void EditReservationButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (currentlySelectedReservation != null)
+            {
+                AddNewWindow addNewWindow = new AddNewWindow(dataConnection, currentlySelectedReservation);
+                addNewWindow.Show();
             }
         }
     }

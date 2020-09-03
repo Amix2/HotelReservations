@@ -18,6 +18,6 @@
 
         public static implicit operator int(Integer d) => d.Value;
 
-        public static implicit operator Integer(int b) => new Integer(b);
+        public static explicit operator Integer(int b) => new Integer(b);
     }
 }
